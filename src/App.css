@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-color: rgb(222,236,251);
+  background-color: #dfdfdf;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,9 +14,10 @@
 }
 
 .container {
+  align-content: center;
   display: flex;
   flex-wrap: wrap;
-  width: 960px;
+  width: 650px;
   margin: auto;
   border-bottom: 0px;
 }
@@ -27,7 +28,7 @@
 }
 
 .nav-bar {
-display: flex;
+    display: flex;
 }
 
 nav {
@@ -43,23 +44,60 @@ nav a:link, nav a:active, nav a:visited {
   color: #444;
 }
 
+nav a:hover {
+  color: #174276;
+  padding-bottom: 1px;
+  border-bottom: 1px solid #174276;
+}
+
 .navLink {
   width: 100px;
   padding-top: 15px;
 }
 
 .article-card {
-    border: solid black;
-    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 10px;
+    background-color: #fff ;
+}
+.article-card a:hover {
+  background-color: #dfdfdf;
+  opacity: 1;
+}
+
+.article-card:hover {
+  background-color: #dfdf;
+  opacity: 1;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: rgb(38,102,175); /* Green */
+  border: none;
+  color: white;
+  padding: 0px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+button:hover {
+    background-color: black;
 
 }
 
+h1, h2, h3, h4, h5, h6, p, ul {
+  margin: 0;
+}
 .form {
-    border: solid black;
+
 }
 
 .filter {
-    border: solid black;
+
 }
 
 .nav-bar {

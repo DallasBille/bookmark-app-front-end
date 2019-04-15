@@ -8,7 +8,7 @@ import {
   BrowserRouter as Router,
   Route, Switch
 } from 'react-router-dom';
-import NavBar from '../Component/NavBar'
+// import NavBar from '../Component/NavBar'
 
 export default class ArticleContainer extends Component {
 
@@ -136,11 +136,8 @@ export default class ArticleContainer extends Component {
 
     render(){
         return(
-            <Router>
             <div className="container">
-                <NavBar className="nav-bar"/>
                 <Form submitNewArticle={this.submitNewArticle}/>
-                <Filter setFilter={this.setFilter}/>
                 <Switch>
                     <Route path="/home" render={(renderProps) => {
                      return <SortedArticleList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} filtered={this.sortArticles()} alertMessage={this.alertMessage}/>}}/>>
@@ -149,8 +146,8 @@ export default class ArticleContainer extends Component {
                     <Route path="/read" render={(renderProps) => {
                      return <ReadList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} handleMoveToUnread={this.handleMoveToUnread} readArticles={this.readArticles()}/>}}/>
                 </Switch>
+                <Filter setFilter={this.setFilter}/>
             </div>
-            </Router>
 
         )
     }
