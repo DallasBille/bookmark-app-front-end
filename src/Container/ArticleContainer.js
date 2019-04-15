@@ -8,6 +8,7 @@ import {
   Route, Switch
 } from 'react-router-dom';
 import Form from '../Component/Form'
+import NYTList from './NYTList'
 
 
 export default class ArticleContainer extends Component {
@@ -15,20 +16,12 @@ export default class ArticleContainer extends Component {
     state = {
         articles: [],
         filter: "",
-        popular: []
     }
 
     componentDidMount(){
         fetch(`http://localhost:3000/articles`)
         .then(res => res.json())
         .then(this.loadArticles)
-        fetch(`https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=K3anmAGwNUiIoSxetQ83c9wNjELsJHmb`)
-        .then(res => res.json())
-        .then(articles => {
-            this.setState({
-                popular: articles.results
-            })
-        })
     }
 
     loadArticles = (articles) => {
@@ -163,8 +156,8 @@ export default class ArticleContainer extends Component {
                      return <UnreadList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} handleMoveToRead={this.handleMoveToRead} unreadArticles={this.unreadArticles()}/>}}/>
                     <Route path="/read" render={(renderProps) => {
                      return <ReadList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} handleMoveToUnread={this.handleMoveToUnread} readArticles={this.readArticles()}/>}}/>
-                    <Route path="/read" render={(renderProps) => {
-                     return <ReadList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} handleMoveToUnread={this.handleMoveToUnread} readArticles={this.readArticles()}/>}}/>
+                    <Route path="/popular" render={(renderProps) => {
+                     return <NYTList/>}}/>
                 </Switch>
                 <Filter setFilter={this.setFilter}/>
             </div>
