@@ -14,24 +14,54 @@
 }
 
 .container {
-    /* display: flex;
-    align: center; */
+  display: flex;
+  flex-wrap: wrap;
+  width: 960px;
+  margin: auto;
+  border-bottom: 0px;
+}
+.article-card {
+  width: 300px;
+  border: 1px solid #ccc;
+  padding: 20px;
 }
 
-.unread-list {
-    float: left;
-    width: 250px;
-    padding-right: 150px;
-
+.nav-bar {
+display: flex;
 }
 
+nav {
+  background-color: #fff;
+  height: 50px;
+  border-bottom: 1px solid #ccc;
+}
 
-.read-list {
-    float: right;
+nav a:link, nav a:active, nav a:visited {
+
+  font-weight: 800;
+  text-decoration: none;
+  color: #444;
+}
+
+.navLink {
+  width: 100px;
+  padding-top: 15px;
 }
 
 .article-card {
     border: solid black;
     background-color: white;
 
+}
+
+.form {
+    border: solid black;
+}
+
+.filter {
+    border: solid black;
+}
+
+.nav-bar {
+    align-items: center;
 }

@@ -7,8 +7,8 @@ export default class Form extends Component {
         url: "",
         author: "",
         title: "",
-        urgency: "medium",
-        read: "unread",
+        urgency: "Medium",
+        read: "Unread",
         summary: ""
     }
 
@@ -39,13 +39,14 @@ export default class Form extends Component {
 
     render(){
         return(
-            <div>
+            <div className="form">
+                <h3>Add Article</h3>
                 <form onChange={this.textChange}>
-                    <input type="text" name="url" placeholder="Article Link"/>
-                    <input type="text" name="title" placeholder="Article Title"/>
-                    <input type="text" name="author" placeholder="Author"/>
+                    <p><input type="text" name="url" placeholder="Article Link"/></p>
+                    <p><input type="text" name="title" placeholder="Article Title"/></p>
+                    <p><input type="text" name="author" placeholder="Author"/></p>
                 </form>
-                <label>Category</label>
+                <p><label>Category</label>
                 <select onChange={this.setCategory} type="category">
                     <option>select</option>
                     <option>Tech</option>
@@ -53,17 +54,18 @@ export default class Form extends Component {
                     <option>Health</option>
                     <option>Philosophy</option>
                     <option>Travel</option>
-                </select>
-                <label>Urgency</label>
+                </select></p>
+                <p><label>Urgency</label>
                 <select onChange={this.setUrgency} type="urgency">
                     <option>Low</option>
                     <option>Medium</option>
                     <option>High</option>
-                </select>
-                <select onChange={this.setRead} type="read">
+                </select></p>
+                <label>Read?</label>
+                <p><select onChange={this.setRead} type="read">
                     <option>Unread</option>
                     <option>Read</option>
-                </select>
+                </select></p>
                 <button onClick={()=>{this.props.submitNewArticle(this.state)}}type="submit">Add Article</button>
 
             </div>

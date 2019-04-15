@@ -1,9 +1,14 @@
 import React, {Component} from 'react'
-import ArticleList from './ArticleList'
-import FavoriteList from './FavoriteList'
+import ReadList from './ReadList'
+import UnreadList from './UnreadList'
 import Filter from '../Component/Filter'
 import Form from '../Component/Form'
 import SortedArticleList from './SortedArticleList'
+import {
+  BrowserRouter as Router,
+  Route, Switch
+} from 'react-router-dom';
+import NavBar from '../Component/NavBar'
 
 export default class ArticleContainer extends Component {
 
@@ -11,13 +16,6 @@ export default class ArticleContainer extends Component {
         articles: [],
         filter: "All"
     }
-
-// Set search term state
-// function that return articles if search is "All"
-// switch statements that filter articles by terms for each type(category, urgency, etc.)
-// send filtered list down to read/unread functions
-
-// the concept is to filter all articles without changing its state. So that this.state.articles is the same always
 
     componentDidMount(){
         fetch(`http://localhost:3000/articles`)
@@ -36,7 +34,7 @@ export default class ArticleContainer extends Component {
         const foundReadArticle = articlesCopy.find(article => {
             return article.id === readArticle.id
         })
-        foundReadArticle.read = "read"
+        foundReadArticle.read = "Read"
         this.setState({
             articles: articlesCopy
         })
@@ -47,18 +45,18 @@ export default class ArticleContainer extends Component {
         const foundUnreadArticle = articlesCopy.find(article => {
             return article.id === unreadArticle.id
         })
-        foundUnreadArticle.read = "unread"
+        foundUnreadArticle.read = "Unread"
         this.setState({
             articles: articlesCopy
         })
     }
 
     readArticles = () => {
-        return this.state.articles.filter(article => article.read === "read")
+        return this.state.articles.filter(article => article.read === "Read")
     }
 
     unreadArticles = () => {
-        return this.state.articles.filter(article => article.read === "unread")
+        return this.state.articles.filter(article => article.read === "Unread")
     }
 
     setFilter = (event) => {
@@ -70,7 +68,7 @@ export default class ArticleContainer extends Component {
     sortArticles = () => {
         const filterState = this.state.filter
         const filtered = this.state.articles.filter(article => {
-            return article.category === filterState
+            return article.category === filterState || article.urgency === filterState
         })
         if(filterState === "All"){
         return this.state.articles
@@ -100,19 +98,60 @@ export default class ArticleContainer extends Component {
         })
     }
 
-// =========== method to move to read
+    deleteArticle = (articleDelete) => {
+        fetch(`http://localhost:3000/articles/${articleDelete.id}`,{
+            method: "DELETE",
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: JSON.stringify(articleDelete)
+        })
+        const copy = [...this.state.articles]
+        const filter = copy.filter(article => article.id !== articleDelete.id)
+        this.setState({
+            articles: filter
+        })
+    }
 
+    updateNotes = (event, summaryState,articleObj) => {
+        event.preventDefault()
+        const filteredList = this.state.articles.filter(article => article.id !== articleObj.id)
+        console.log(filteredList);
+        fetch(`http://localhost:3000/articles/${articleObj.id}`,{
+            method: "PATCH",
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: JSON.stringify({article: {summary: summaryState}})
+        })
+        .then(res => res.json())
+        .then(article => {
+            this.setState({
+                articles: [...filteredList, article]
+            })
+        })
+    }
 
     render(){
-        console.log(this.sortArticles());
         return(
+            <Router>
             <div className="container">
+                <NavBar className="nav-bar"/>
                 <Form submitNewArticle={this.submitNewArticle}/>
                 <Filter setFilter={this.setFilter}/>
-                <SortedArticleList filtered={this.sortArticles()} alertMessage={this.alertMessage}/>
-                <FavoriteList handleMoveToRead={this.handleMoveToRead} unreadArticles={this.unreadArticles()}/>
-                <ArticleList handleMoveToUnread={this.handleMoveToUnread} readArticles={this.readArticles()}/>
+                <Switch>
+                    <Route path="/home" render={(renderProps) => {
+                     return <SortedArticleList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} filtered={this.sortArticles()} alertMessage={this.alertMessage}/>}}/>>
+                    <Route path="/unread" render={(renderProps) => {
+                     return <UnreadList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} handleMoveToRead={this.handleMoveToRead} unreadArticles={this.unreadArticles()}/>}}/>
+                    <Route path="/read" render={(renderProps) => {
+                     return <ReadList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} handleMoveToUnread={this.handleMoveToUnread} readArticles={this.readArticles()}/>}}/>
+                </Switch>
             </div>
+            </Router>
+
         )
     }
 }

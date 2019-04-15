@@ -5,14 +5,14 @@ const SortedArticleList = (props) => {
 
     const allArticleCards = () => {
         return props.filtered.map(article => {
-            return (<ArticleCard handleClick={props.alertMessage} key={article.id} article={article} />)
+            return (<ArticleCard updateNotes={props.updateNotes} deleteArticle={props.deleteArticle} handleClick={props.alertMessage} key={article.id} article={article} />)
         })
     }
 
     return(
-        <div>
+        <div className="list">
+        <h2>Articles</h2>
             {allArticleCards()}
-            <h1>Sorted Articles</h1>
         </div>
     )
 }
