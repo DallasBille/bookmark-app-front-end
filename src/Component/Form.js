@@ -41,7 +41,7 @@ export default class Form extends Component {
         return(
             <div className="form">
                 <h3>Add Article</h3>
-                <form onChange={this.textChange}>
+                <form id="new-article-form" onChange={this.textChange}>
                     <p><input type="text" name="url" placeholder="Article Link"/></p>
                     <p><input type="text" name="title" placeholder="Article Title"/></p>
                     <p><input type="text" name="author" placeholder="Author"/></p>
@@ -54,6 +54,8 @@ export default class Form extends Component {
                     <option>Health</option>
                     <option>Philosophy</option>
                     <option>Travel</option>
+                    <option>Politics</option>
+                    <option>Other</option>
                 </select></p>
                 <p><label>Urgency</label>
                 <select onChange={this.setUrgency} type="urgency">
@@ -61,8 +63,8 @@ export default class Form extends Component {
                     <option>Medium</option>
                     <option>High</option>
                 </select></p>
-                <label>Read?</label>
-                <p><select onChange={this.setRead} type="read">
+                <p><label>Read?</label>
+                <select onChange={this.setRead} type="read">
                     <option>Unread</option>
                     <option>Read</option>
                 </select></p>

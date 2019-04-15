@@ -2,32 +2,38 @@ import React, {Component} from 'react'
 import ReadList from './ReadList'
 import UnreadList from './UnreadList'
 import Filter from '../Component/Filter'
-import Form from '../Component/Form'
 import SortedArticleList from './SortedArticleList'
 import {
   BrowserRouter as Router,
   Route, Switch
 } from 'react-router-dom';
-// import NavBar from '../Component/NavBar'
+import Form from '../Component/Form'
+
 
 export default class ArticleContainer extends Component {
 
     state = {
         articles: [],
-        filter: "All"
+        filter: "",
+        popular: []
     }
 
     componentDidMount(){
         fetch(`http://localhost:3000/articles`)
         .then(res => res.json())
         .then(this.loadArticles)
+        fetch(`https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=K3anmAGwNUiIoSxetQ83c9wNjELsJHmb`)
+        .then(res => res.json())
+        .then(articles => {
+            this.setState({
+                popular: articles.results
+            })
+        })
     }
 
     loadArticles = (articles) => {
         this.setState({articles})
-
     }
-
 
     handleMoveToRead = (readArticle) => {
         let articlesCopy = [...this.state.articles]
@@ -65,23 +71,34 @@ export default class ArticleContainer extends Component {
         })
     }
 
+    setSearchState = (event) => {
+        this.setState({
+            searchTerm: event.target.value
+        })
+    }
+
     sortArticles = () => {
         const filterState = this.state.filter
         const filtered = this.state.articles.filter(article => {
             return article.category === filterState || article.urgency === filterState
         })
-        if(filterState === "All"){
-        return this.state.articles
-    } else {
-        return filtered
-        }
+            if(filterState === "All" || filterState === ""){
+            return this.state.articles
+            } else {
+            return filtered
+            }
     }
 
     alertMessage = () => {
         console.log("useless feature");
     }
 
+    clearForm = () => {
+        return document.getElementById("new-article-form").reset()
+    }
+
     submitNewArticle = (newArticle) => {
+        this.clearForm()
         fetch(`http://localhost:3000/articles`,{
             method: "POST",
             headers: {
@@ -117,7 +134,6 @@ export default class ArticleContainer extends Component {
     updateNotes = (event, summaryState,articleObj) => {
         event.preventDefault()
         const filteredList = this.state.articles.filter(article => article.id !== articleObj.id)
-        console.log(filteredList);
         fetch(`http://localhost:3000/articles/${articleObj.id}`,{
             method: "PATCH",
             headers: {
@@ -135,14 +151,18 @@ export default class ArticleContainer extends Component {
     }
 
     render(){
+        console.log(this.state.popular);
+        console.log(this.state.articles);
         return(
             <div className="container">
-                <Form submitNewArticle={this.submitNewArticle}/>
+            <Form submitNewArticle={this.submitNewArticle}/>
                 <Switch>
                     <Route path="/home" render={(renderProps) => {
-                     return <SortedArticleList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} filtered={this.sortArticles()} alertMessage={this.alertMessage}/>}}/>>
+                     return <SortedArticleList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} filtered={this.sortArticles()} alertMessage={this.alertMessage}/>}}/>
                     <Route path="/unread" render={(renderProps) => {
                      return <UnreadList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} handleMoveToRead={this.handleMoveToRead} unreadArticles={this.unreadArticles()}/>}}/>
+                    <Route path="/read" render={(renderProps) => {
+                     return <ReadList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} handleMoveToUnread={this.handleMoveToUnread} readArticles={this.readArticles()}/>}}/>
                     <Route path="/read" render={(renderProps) => {
                      return <ReadList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} handleMoveToUnread={this.handleMoveToUnread} readArticles={this.readArticles()}/>}}/>
                 </Switch>

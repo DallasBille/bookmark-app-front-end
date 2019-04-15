@@ -8,8 +8,7 @@ const UnreadList = (props) => {
             return (<ArticleCard updateNotes={props.updateNotes} deleteArticle={props.deleteArticle} handleClick={props.handleMoveToRead} key={article.id} article={article} />)
         })
     }
-
-
+    
         return(
             <div className="list">
                 <h2>Unread</h2>

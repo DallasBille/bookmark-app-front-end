@@ -13,9 +13,10 @@ const Filter = (props) => {
             <option>Health</option>
             <option>Philosophy</option>
             <option>Travel</option>
+            <option>Other</option>
           </select></p>
-          <label>Urgency</label>
-          <p><select onChange={props.setFilter} type="Urgency">
+          <p><label>Urgency</label>
+          <select onChange={props.setFilter} type="Urgency">
             <option>Low</option>
             <option>Medium</option>
             <option>High</option>
