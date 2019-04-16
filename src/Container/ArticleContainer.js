@@ -58,8 +58,8 @@ export default class ArticleContainer extends Component {
         return document.getElementById("new-article-form").reset()
     }
 
-    submitNewArticle = (newArticle) => {
-        this.clearForm()
+    submitNewArticle = (e, newArticle) => {
+        e.preventDefault()
         ArticleAdapter.postArticle(newArticle)
         .then(article => {
             this.setState({
@@ -131,7 +131,7 @@ export default class ArticleContainer extends Component {
                     <Route path="/read" render={(renderProps) => {
                      return <ReadList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} handleMoveToUnread={this.handleMoveToUnread} readArticles={this.readArticles()}/>}}/>
                 </Switch>
-                <Filter setFilter={this.setFilter}/>
+                <Filter setFilter={this.state.setFilter} term={this.state.filter}/>
             </div>
 
         )

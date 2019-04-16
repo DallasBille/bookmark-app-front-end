@@ -30,8 +30,8 @@ class ArticleCard extends Component {
           <p><button onClick={()=>{this.props.handleClick(this.props.article)}}>Mark {this.props.article.read === "Read" ? "Unread" : "Read"}</button></p>
           <p><button onClick={()=>{this.props.deleteArticle(this.props.article)}}>Delete</button></p>
           <button onClick={this.showTextArea}>Notes</button>
-          <form onChange={(event)=>{this.summaryState(event)}} style={this.state.visible === false ? {display: "none"} : {display: "block"}}>
-          <p><textarea defaultValue={this.props.article.summary} placeholder="Add notes" rows="4" cols="30"></textarea></p>
+          <form style={this.state.visible === false ? {display: "none"} : {display: "block"}}>
+          <p><textarea onChange={(event)=>{this.summaryState(event)}} value={this.state.summary} defaultValue={this.props.article.summary} placeholder="Add notes" rows="4" cols="30"></textarea></p>
           <button onClick={(event)=>{this.props.updateNotes(event,this.state.summary,this.props.article);this.showTextArea()}}>Submit</button>
           </form>
         </div>
