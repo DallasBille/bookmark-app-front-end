@@ -4,7 +4,7 @@ class ArticleCard extends Component {
 
         state = {
             visible: false,
-            summary: ''
+            summary: '',
         }
 
         showTextArea = () => {
@@ -27,7 +27,7 @@ class ArticleCard extends Component {
           <p>Category: {this.props.article.category}</p>
           <p>Urgency: {this.props.article.urgency}</p>
           <p>Status: {this.props.article.read}</p>
-          <p><button onClick={()=>{this.props.handleClick(this.props.article)}}>Read/Unread</button></p>
+          <p><button onClick={()=>{this.props.handleClick(this.props.article)}}>Mark {this.props.article.read === "Read" ? "Unread" : "Read"}</button></p>
           <p><button onClick={()=>{this.props.deleteArticle(this.props.article)}}>Delete</button></p>
           <button onClick={this.showTextArea}>Notes</button>
           <form onChange={(event)=>{this.summaryState(event)}} style={this.state.visible === false ? {display: "none"} : {display: "block"}}>
