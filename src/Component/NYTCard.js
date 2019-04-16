@@ -1,7 +1,6 @@
 import React from 'react'
 
 const NYTCard = (props) => {
-console.log(props);
     return(
         <div className="article-card">
             <a href={props.article.url}>{props.article.title}</a>

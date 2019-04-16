@@ -20,10 +20,11 @@ export default class NYTList extends React.Component {
             return <NYTCard article={article}/>
         })
     }
-    // <NYTCard nyt={this.state.popular}/>
+
     render(){
         return(
             <div className="list">
+              <h3>NYT Most Popular</h3>
                 {this.nytCards()}
             </div>
         )
