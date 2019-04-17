@@ -36,7 +36,6 @@ export default class Form extends Component {
  }
 
     render(){
-        console.log(this.state);
         return(
             <div className="form">
                 <h3>Add Article</h3>
