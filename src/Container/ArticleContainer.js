@@ -24,12 +24,17 @@ export default class ArticleContainer extends Component {
     componentDidMount(){
         fetch(`http://localhost:3000/articles`)
         .then(res => res.json())
-        .then(this.loadArticles)
+        .then(articles =>{
+            const reverse = articles.reverse()
+            this.setState({
+                articles: reverse
+            })
+        })
     }
 
-    loadArticles = (articles) => {
-        this.setState({articles})
-    }
+    // loadArticles = (articles) => {
+    //     this.setState({articles.reverse()})
+    // }
 
     handleMoveToRead = (readArticle) => {
         const filteredArticles = this.state.articles.filter(article => {
@@ -102,6 +107,7 @@ export default class ArticleContainer extends Component {
     }
 
     setFilter = (event) => {
+        // console.log(event.target.value);
         this.setState({
             filter: event.target.value
         })
@@ -131,7 +137,7 @@ export default class ArticleContainer extends Component {
                     <Route path="/read" render={(renderProps) => {
                      return <ReadList updateNotes={this.updateNotes} deleteArticle={this.deleteArticle} handleMoveToUnread={this.handleMoveToUnread} readArticles={this.readArticles()}/>}}/>
                 </Switch>
-                <Filter setFilter={this.state.setFilter} term={this.state.filter}/>
+                <Filter setFilter={this.setFilter} term={this.state.filter}/>
             </div>
 
         )

@@ -4,7 +4,7 @@ class ArticleCard extends Component {
 
         state = {
             visible: false,
-            summary: '',
+            summary: this.props.article.summary,
         }
 
         showTextArea = () => {
@@ -20,6 +20,8 @@ class ArticleCard extends Component {
         }
 
     render(){
+        console.log(this.props.article)
+        console.log(this.state.summary)
     return(
         <div className="article-card">
           <a href={this.props.article.url} target="_blank">{this.props.article.title} </a>
@@ -31,11 +33,12 @@ class ArticleCard extends Component {
           <p><button onClick={()=>{this.props.deleteArticle(this.props.article)}}>Delete</button></p>
           <button onClick={this.showTextArea}>Notes</button>
           <form style={this.state.visible === false ? {display: "none"} : {display: "block"}}>
-          <p><textarea onChange={(event)=>{this.summaryState(event)}} value={this.state.summary} defaultValue={this.props.article.summary} placeholder="Add notes" rows="4" cols="30"></textarea></p>
+          <p><textarea onChange={(event)=>{this.summaryState(event)}} value={this.state.summary} placeholder="Add notes" rows="4" cols="30"></textarea></p>
           <button onClick={(event)=>{this.props.updateNotes(event,this.state.summary,this.props.article);this.showTextArea()}}>Submit</button>
           </form>
         </div>
     )
     }
 }
+// defaultValue={this.props.article.summary
 export default ArticleCard
