@@ -1,12 +1,11 @@
-html *
-{
-   color: #000 !important;
-   font-family: Dubiel !important;
+html * {
+  color: #000 !important;
+  font-family: Dubiel !important;
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .App {
@@ -39,7 +38,7 @@ html *
 }
 
 .nav-bar {
-    display: flex;
+  display: flex;
 }
 
 nav {
@@ -48,8 +47,9 @@ nav {
   border-bottom: 1px solid #ccc;
 }
 
-nav a:link, nav a:active, nav a:visited {
-
+nav a:link,
+nav a:active,
+nav a:visited {
   font-weight: 800;
   text-decoration: none;
   color: #444;
@@ -67,10 +67,10 @@ nav a:hover {
 }
 
 .article-card {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-top: 10px;
-    background-color: #fff ;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 10px;
+  background-color: #fff;
 }
 .article-card a:hover {
   background-color: #dfdfdf;
@@ -85,7 +85,7 @@ nav a:hover {
 button {
   cursor: pointer;
   border-radius: 8px;
-  background-color: rgb(38,102,175); /* Green */
+  background-color: rgb(38, 102, 175); /* Green */
   border: none;
   color: white;
   padding: 0px 12px;
@@ -96,21 +96,25 @@ button {
 }
 
 button:hover {
-    background-color: white;
-
+  background-color: white;
 }
 
-h1, h2, h3, h4, h5, h6, p, ul {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
   margin: 0;
 }
 .form {
-
 }
 
 .filter {
-
 }
 
 .nav-bar {
-    align-items: center;
+  align-items: center;
 }
