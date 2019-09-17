@@ -1,68 +1,31 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About the Project
 
-## Available Scripts
+Markador is a web article/blog post bookmarking tool. With it, you can upload articles from around the web into one interface. This consolidates different articles and allows you to organize them in a multitiude of ways, as well as allows you to add notes after reading them.
 
-In the project directory, you can run:
+## Motivation
 
-### `npm start`
+After growing sick of chrome's bookmark tool and lack of customization, I whipped up a five day React and Rails prototype of a tool that will help you organize your blog articles, and allow you to add notes to articles you have read, and creates a more personal UX than chrome bookmark's.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Markador uses React with a Rails backend and vanilla everything else. It has reusable components for organization.
 
-### `npm test`
+## Back End:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+https://github.com/DallasBille/bookmark-app
 
-### `npm run build`
+## Set Up:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone Repo.
+2. npm install.
+3. npm start.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+This launches the front end, make sure you have the back end set up so you can save your own articles!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## To-Do's:
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1. Better UX/UI (Cleaner article form).
+2. Redo read/unread feature.
+3. Ability to create a category.
+4. Chrome Dev tool that download pertinent info automatically.
+5. Cleaner note feature and imporoved CSS.
