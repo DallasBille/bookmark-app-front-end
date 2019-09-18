@@ -2,6 +2,9 @@
 
 Markador is a web article/blog post bookmarking tool. With it, you can upload articles from around the web into one interface. This consolidates different articles and allows you to organize them in a multitiude of ways, as well as allows you to add notes after reading them.
 
+![Imgur](https://i.imgur.com/haUGb7X.png)
+![Imgur](https://i.imgur.com/kWHNUcH.png)
+
 ## Motivation
 
 After growing sick of chrome's bookmark tool and lack of customization, I whipped up a five day React and Rails prototype of a tool that will help you organize your blog articles, and allow you to add notes to articles you have read, and creates a more personal UX than chrome bookmark's.
