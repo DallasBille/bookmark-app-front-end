@@ -2,8 +2,8 @@
 
 Markador is a web article/blog post bookmarking tool. With it, you can upload articles from around the web into one interface. This consolidates different articles and allows you to organize them in a multitiude of ways, as well as allows you to add notes after reading them.
 
-![Imgur](https://i.imgur.com/haUGb7X.png)
-![Imgur](https://i.imgur.com/kWHNUcH.png)
+![Imgur](https://i.imgur.com/EWcTTbP.png)
+![Imgur](https://i.imgur.com/vY4q6Ym.png)
 
 ## Motivation
 
